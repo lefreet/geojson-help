@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo</title>
+  <script src="https://cdn.bootcss.com/echarts/3.7.0/echarts.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+</head>
+<body>
+  <div id="demo" style="width: 400px; height: 400px;"></div>
+</body>
+
+<script>
+
+  axios.get('./map_geo.json').then(function (res) {
+    var el = document.querySelector('#demo');
+    echarts.registerMap('map', res.data)
+    echarts.init(el).setOption({
+      series: [{
+        type: 'map',
+        map: 'map'
+      }]
+    })
+  })
+
+</script>
+
+</html>

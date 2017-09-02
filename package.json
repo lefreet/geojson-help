@@ -1,0 +1,38 @@
+{
+  "name": "geojson-help",
+  "version": "1.0.0",
+  "description": "node command line tool for geojson format && encode",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server -a localhost -p 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lefreet/geojson-help.git"
+  },
+  "keywords": [
+    "geojson",
+    "echarts",
+    "encode"
+  ],
+  "author": "wsn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lefreet/geojson-help/issues"
+  },
+  "homepage": "https://github.com/lefreet/geojson-help#readme",
+  "bin": {
+    "geo": "./bin/geo"
+  },
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  },
+  "dependencies": {
+    "colorful": "^2.1.0",
+    "commander": "^2.11.0",
+    "cross-spawn": "^5.1.0",
+    "lodash": "^4.17.4",
+    "win-spawn": "^2.0.0"
+  }
+}
