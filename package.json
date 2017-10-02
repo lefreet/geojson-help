@@ -1,6 +1,6 @@
 {
   "name": "geojson-help",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node command line tool for geojson format && encode",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "commander": "^2.11.0",
-    "lodash": "^4.17.4",
+    "glob": "^7.1.2",
+    "lodash": "^4.17.4"
   }
 }

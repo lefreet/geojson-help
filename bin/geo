@@ -8,6 +8,7 @@ commander
   .usage('<command> [options]')
   .command('a2g', 'arcgis2geojson, transform the Arcgis Json to the GEO Json')
   .command('a2e', 'arcgis2echarts, like a2g except that it compress longitude and latitude to be used by the Echarts')
+  .command('test', 'test')
   .parse(process.argv)
 
 

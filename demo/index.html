@@ -12,16 +12,18 @@
 
 <script>
 
-  axios.get('./map_geo.json').then(function (res) {
-    var el = document.querySelector('#demo');
-    echarts.registerMap('map', res.data)
-    echarts.init(el).setOption({
-      series: [{
-        type: 'map',
-        map: 'map'
-      }]
+  axios
+    .get('./test_geo.json')
+    .then(function (res) {
+      var el = document.querySelector('#demo');
+      echarts.registerMap('map', res.data)
+      echarts.init(el).setOption({
+        series: [{
+          type: 'map',
+          map: 'map'
+        }]
+      })
     })
-  })
 
 </script>
 

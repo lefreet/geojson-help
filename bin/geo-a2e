@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var commander = require('commander');
 var transform = require('../lib/transform');
 
 transform(['format', 'encode'])
