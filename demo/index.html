@@ -13,7 +13,7 @@
 <script>
 
   axios
-    .get('./test_geo.json')
+    .get('./map_geo.json')
     .then(function (res) {
       var el = document.querySelector('#demo');
       echarts.registerMap('map', res.data)
