@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var glob = require('glob');
+var commander = require('commander');
+
+// input&output, all file operation
+var io = function (input, output, handler) {
+  console.time('spend')
+
+  console.log(handler.name)
+
+  output += '/'
+  if (!fs.existsSync(output)) {
+    fs.mkdirSync(output)
+  }
+
+  glob(input, {}, function (err, files) {
+    var count = 0
+
+    if(files.length === 0) {
+      console.log('no file match, check path please, or see https://github.com/isaacs/node-glob')
+    }
+
+    // clear output dir
+    glob.sync(output + '*').forEach(file => fs.unlinkSync(file))
+
+    files.forEach(file => {
+      if (file => file.indexOf('.json') === -1) {
+        let filename = output + file.split('/').pop()
+        let stream = fs.readFileSync(file, 'utf8')
+        let json = JSON.parse(stream)
+
+        json = handler(json)
+
+        fs.writeFileSync(filename, JSON.stringify(json), 'utf8')
+        count++
+      } else {
+        console.log('file ' + file + ' is wrong')
+      }
+    })
+
+    console.log(handler.name + ' ' + count + ' file, over.')
+    console.timeEnd('spend')
+  })
+}
+
+module.exports = io

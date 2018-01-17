@@ -7,23 +7,50 @@
   <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
 </head>
 <body>
-  <div id="demo" style="width: 400px; height: 400px;"></div>
+  <div id="geo"></div>
+  <div id="encode"></div>
 </body>
+
+<style>
+  body,html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+  body {
+    display: flex;
+  }
+  #geo {
+    width: 50%
+  }
+  #encode {
+    width: 50%;
+  }
+</style>
 
 <script>
 
-  axios
-    .get('./map_geo.json')
-    .then(function (res) {
-      var el = document.querySelector('#demo');
-      echarts.registerMap('map', res.data)
-      echarts.init(el).setOption({
-        series: [{
-          type: 'map',
-          map: 'map'
-        }]
+  var render = function (url, selector, title) {
+    axios
+      .get(url)
+      .then(function (res) {
+        var el = document.querySelector(selector);
+        echarts.registerMap(selector, res.data)
+        echarts.init(el).setOption({
+          title: {
+            text: title,
+            left: 'center'
+          },
+          series: [{
+            type: 'map',
+            map: selector
+          }]
+        })
       })
-    })
+  }
+
+  render('json_geo/map.json', '#geo', '标准geojson')
+  render('json_geo_encode/map.json', '#encode', '压缩过的geojson')
 
 </script>
 

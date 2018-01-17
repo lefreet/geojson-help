@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-var transform = require('../lib/transform');
-
-transform(['format'])

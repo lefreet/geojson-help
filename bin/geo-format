@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var glob = require('glob');
+var commander = require('commander');
+
+var io = require('./io');
+var format = require('../lib/format');
+
+commander
+  .option('-i --input <input>', 'use glob to match files for transform, see https://github.com/isaacs/node-glob')
+  .parse(process.argv)
+
+io(commander.input, 'json_geo', format)
