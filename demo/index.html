@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>demo</title>
+  <script src="https://cdn.bootcss.com/leaflet/1.3.1/leaflet.js"></script>
+  <link href="https://cdn.bootcss.com/leaflet/1.3.1/leaflet.css" rel="stylesheet">
   <script src="https://cdn.bootcss.com/echarts/3.7.0/echarts.min.js"></script>
   <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
 </head>
 <body>
   <div id="geo"></div>
   <div id="encode"></div>
+  <div id="decode"></div>
+  <div id="leaflet"></div>
 </body>
 
 <style>
@@ -19,18 +23,17 @@
   }
   body {
     display: flex;
+    flex-wrap: wrap;
   }
-  #geo {
-    width: 50%
-  }
-  #encode {
+  body>div {
+    height: 50%;
     width: 50%;
   }
 </style>
 
 <script>
 
-  var render = function (url, selector, title) {
+  var renderEchart = function (url, selector, title) {
     axios
       .get(url)
       .then(function (res) {
@@ -49,8 +52,26 @@
       })
   }
 
-  render('json_geo/map.json', '#geo', '标准geojson')
-  render('json_geo_encode/map.json', '#encode', '压缩过的geojson')
+  var renderLeaflet = function (url, id) {
+    axios
+      .get(url)
+      .then(function (res) {
+        var map = L.map(id).setView([26, 118], 7);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+          maxZoom: 18,
+          attribution: '<h1>geojson在leaflet中的使用</h1>',
+          id: 'mapbox.streets'
+        }).addTo(map)
+
+        L.geoJSON(res.data).addTo(map)
+      })
+  }
+
+  renderEchart('json_geo/map.json', '#geo', '标准geojson')
+  renderEchart('json_geo_encode/map.json', '#encode', '压缩过的geojson')
+  renderEchart('json_geo_decode/map.json', '#decode', '解压缩回来的geojson')
+  renderLeaflet('json_geo/map.json', 'leaflet')
 
 </script>
 

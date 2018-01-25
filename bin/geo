@@ -6,10 +6,9 @@ var commander = require('commander');
 commander
   .version(geo.version)
   .usage('<command> [options]')
-  .command('a2g', 'arcgis2geojson, transform the Arcgis Json to the GEO Json')
-  .command('a2e', 'arcgis2echarts, like a2g except that it compress longitude and latitude to be used by the Echarts')
   .command('format', 'format data to geojson')
   .command('encode', 'encode geojson')
+  .command('decode', 'decode geojson')
   .command('transform', 'format&encode geojson')
   .parse(process.argv)
 

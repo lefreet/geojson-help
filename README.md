@@ -1,6 +1,6 @@
 # geojson-help
 
->command line for the geojson format and encode
+>command line for the GeoJSON format and encode
 
 [![node](https://img.shields.io/node/v/geojson-help.svg?style=flat-square)](https://www.npmjs.com/package/geojson-help)
 [![npm](https://img.shields.io/npm/dw/geojson-help.svg?style=flat-square)](https://www.npmjs.com/package/geojson-help)
@@ -33,7 +33,7 @@ $ geo format -i 'json/*.json'
 
 #### 2. 压缩
 
-使用字符集编码转换和`ZigZag`算法压缩标准`geosjon`的几何数据，文件末尾用`"UTF8Encoding": true`作为标示。结果适用于[echarts](http://echarts.baidu.com/)。也可结合解码方法(未完成)，应用于支持`geojson`的地图，如[leaflet](http://leafletjs.com/)
+使用字符集编码转换和`ZigZag`算法压缩标准`geosjon`的几何数据，文件末尾用`"UTF8Encoding": true`作为标示。结果适用于[echarts](http://echarts.baidu.com/)。也可结合`decode`解码方法，应用于支持`geojson`的地图，如[leaflet](http://leafletjs.com/)
 
 ```bash
 $ geo encode -i <input>
@@ -48,7 +48,15 @@ $ geo encode -i <input>
 $ geo encode -i 'json_geo/*.json'
 ```
 
-#### 3.格式化&压缩
+#### 3. 解码
+
+针对`2.`的压缩结果做解码，还原成标准`geojson`数据。压缩-还原过程，会导致经纬度精度丢失，但一般不影响图层显示。
+
+```bash
+$ geo decode -i <input>
+```
+
+#### 4.格式化&压缩
 
 连续操作格式化和压缩，其它同上
 
@@ -73,6 +81,7 @@ import arcgisjson from '../assets/arcgisjson.json'
 
 var geojson = geo.format(arcgisjson)
 var geojsonEncode = geo.encode(geojson)
+var geojsonDecode = geo.decode(geojsonEncode)
 ```
 
 ## 测试demo
@@ -82,8 +91,8 @@ var geojsonEncode = geo.encode(geojson)
 
 ## 待扩展
 
-1. 对应`encode`的`decode`解码功能。
-2. 'format'精度控，拐点抽稀，进一步提高压缩比。
+1. 压缩解码缩放参数
+2. 'format'精度控制，拐点抽稀，进一步提高压缩比。
 
 
 

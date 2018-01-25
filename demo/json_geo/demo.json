@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { 
+        "name": "福州市轮廓"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [119,26],
+            [118,25],
+            [120,25],
+            [119,26]
+          ]
+        ]
+      }
+    }
+  ]
+}
