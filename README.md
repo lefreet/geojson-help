@@ -26,10 +26,10 @@ $ geo format  -i <input>
 示例：
 
 ```bash
-$ geo format -i 'json/*.json'
+$ geo format -i "json/*.json"
 ```
 
-*注意：-i 参数值必须为字符串，否则会被`node`自身强制匹配到唯一路径(默认第一个)*
+*注意：-i osx系统，参数值必须为[双引号](https://www.npmjs.com/package/geojson-help)包裹的字符串，未加双引号路径会被预先解析，只能匹配到一个结果；windows下可加可不加，但是别使用单引号，匹配不到的。具体原因不明，有了解的麻烦告诉我。*
 
 #### 2. 压缩
 
@@ -45,7 +45,7 @@ $ geo encode -i <input>
 示例：
 
 ```bash
-$ geo encode -i 'json_geo/*.json'
+$ geo encode -i "json_geo/*.json"
 ```
 
 #### 3. 解码
@@ -93,6 +93,8 @@ var geojsonDecode = geo.decode(geojsonEncode)
 
 1. 压缩解码缩放参数
 2. 'format'精度控制，拐点抽稀，进一步提高压缩比。
+
+[欢迎提issue](https://github.com/lefreet/geojson-help/issues)
 
 
 

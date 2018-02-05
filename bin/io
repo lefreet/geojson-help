@@ -8,8 +8,6 @@ var commander = require('commander');
 var io = function (input, output, handler) {
   console.time('spend')
 
-  console.log(handler.name)
-
   output += '/'
   if (!fs.existsSync(output)) {
     fs.mkdirSync(output)
